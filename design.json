@@ -1,0 +1,293 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is ongoing work for the MK:Smart Datahub Portal API.  You can find out more about MK:Smart at [http://mksmart.org](http://mksmart.org)",
+    "version": "1.0.0",
+    "title": "MK:Smart Datahub Portal API",
+    "termsOfService": "http://datahub.mksmart.org",
+    "contact": {
+      "email": "enrico.daga@open.ac.uk"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "http://datahub.mksmart.org",
+  "basePath": "/api/1.0",
+  "tags": [
+    {
+      "name": "catalogue",
+      "description": "About datasets",
+      "externalDocs": {
+        "description": "List the datasets a user can view. Access dataset metadata.",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "datasources",
+      "description": "List the data sources and details about them.",
+      "externalDocs": {
+        "description": "Find out more about this API",
+        "url": "#"
+      }
+    },
+    {
+      "name": "subscriptions",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about this API",
+        "url": "#"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/datasets": {
+      "get": {
+        "tags": [
+          "catalogue"
+        ],
+        "summary": "List datasets",
+        "description": "List the datasets",
+        "operationId": "catalogueListDatasets",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "fields",
+            "name": "fields",
+            "description": "CSV list of fields to be included in the output. Default fields are: title, page",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/catalogueListDatasets"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the list of datasets"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": []
+      }
+    },
+    "/dataset/{datasetId}": {
+      "get": {
+        "tags": [
+          "catalogue"
+        ],
+        "summary": "Find dataset by ID",
+        "description": "Returns a single dataset",
+        "operationId": "getDatasetById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "path",
+            "description": "ID of dataset to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Dataset"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Updates a pet in the store with form data",
+        "description": "",
+        "operationId": "updatePetWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name of the pet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Updated status of the pet",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "catalogue"
+        ],
+        "summary": "Deletes a dataset",
+        "description": "",
+        "operationId": "deleteDataset",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Dataset deleted"
+          },
+          "400": {
+            "description": "Invalid dataset value"
+          }
+        },
+        "security": [
+          {
+            "portal_auth": [
+              "write:datasets",
+              "read:datasets"
+            ]
+          }
+        ]
+      }
+    },
+    "/mydatasources": {
+      "get": {
+        "tags": [
+          "datasources"
+        ],
+        "summary": "List my data sources",
+        "description": "Provides a list of the data sources.",
+        "operationId": "datasourcesList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Dataset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "/[0-9_\\-A-Za-z]/"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about MK:Smart Datahub API",
+    "url": "http://datahub.mksmart.org"
+  }
+}
