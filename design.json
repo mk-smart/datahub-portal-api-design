@@ -57,7 +57,6 @@
           "*/*"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
@@ -75,11 +74,11 @@
           "200": {
             "description": "Returns the list of datasets",
             "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/Dataset"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dataset"
+                }
               }
-            }
           },
           "405": {
             "description": "Invalid input"
@@ -263,11 +262,11 @@
            "200": {
             "description": "successful operation",
             "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/Subscription"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subscription"
+                }
               }
-            }
           }
         }
       }
@@ -284,9 +283,9 @@
     "Dataset": {
       "type": "object",
       "properties": {
-        "id": {
+        "datasetId": {
           "type": "string",
-          "format": "/[0-9_\\-A-Za-z]/"
+          "required": "true"
         },
         "title": {
           "type": "string"
@@ -318,7 +317,7 @@
          }
       }
     },
-    "Datasources": {
+    "Datasource": {
       "type": "object",
       "properties": {
          "datasetId": {
