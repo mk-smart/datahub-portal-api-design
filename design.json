@@ -312,7 +312,7 @@
       }
     },
     "Datasources": {
-      "type": "object",,
+      "type": "object",
       "properties": {
          "list": {
            "type": "array",
