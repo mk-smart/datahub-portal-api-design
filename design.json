@@ -73,7 +73,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the list of datasets"
+            "description": "Returns the list of datasets",
+            "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Dataset"
+              }
+            }
           },
           "405": {
             "description": "Invalid input"
@@ -232,7 +238,10 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Datasources"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Datasource"
+              }
             }
           }
         }
@@ -254,7 +263,10 @@
            "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Subscriptions"
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Subscription"
+              }
             }
           }
         }
@@ -292,38 +304,29 @@
         }
       }
     },
-    "Subscriptions": {
+    "Subscription": {
       "type": "object",
       "properties": {
-         "list": {
-           "type": "array",
-           "items": {
-             "key": {
-               "type": "string"
-             },
-             "datasetId": {
-               "type": "string"
-             },
-             "active": {
-               "type": "boolean"
-             }
-           }
+         "key": {
+           "type": "string"
+         },
+         "datasetId": {
+           "type": "string"
+         },
+         "active": {
+           "type": "boolean"
          }
       }
     },
     "Datasources": {
       "type": "object",
       "properties": {
-         "list": {
-           "type": "array",
-           "items": {
-             "datasetId": {
-               "type": "string"
-             },
-             "url":{
-               "type": "string"
-             }
-           }
+        {
+         "datasetId": {
+           "type": "string"
+         },
+         "url":{
+           "type": "string"
          }
       }
     },
