@@ -63,7 +63,8 @@
           {
             "in": "fields",
             "name": "fields",
-            "description": "CSV list of fields to be included in the output. Default fields are: title, page",
+            "description": "CSV list of fields to be included in the output.",
+            "default": "title,page"
             "required": false,
             "schema": {
               "$ref": "#/definitions/catalogueListDatasets"
@@ -284,9 +285,13 @@
       "type": "object",
       "properties": {
         "datasetId": {
-          "type": "string"
+          "type": "string",
+          "description": "Dataset UUID"
         },
         "title": {
+          "type": "string"
+        },
+        "page": {
           "type": "string"
         },
         "description": {
