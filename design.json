@@ -284,8 +284,7 @@
       "type": "object",
       "properties": {
         "datasetId": {
-          "type": "string",
-          "required": "true"
+          "type": "string"
         },
         "title": {
           "type": "string"
@@ -301,7 +300,8 @@
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "required": ["datasetId"]
     },
     "Subscription": {
       "type": "object",
@@ -315,7 +315,8 @@
          "active": {
            "type": "boolean"
          }
-      }
+      },
+      "required":["key","datasetId","active"]
     },
     "Datasource": {
       "type": "object",
@@ -326,7 +327,8 @@
          "url":{
            "type": "string"
          }
-      }
+      },
+      "required":["datasetId","url"]
     },
     "ApiResponse": {
       "type": "object",
