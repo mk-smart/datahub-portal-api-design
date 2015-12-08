@@ -64,7 +64,7 @@
             "in": "fields",
             "name": "fields",
             "description": "CSV list of fields to be included in the output.",
-            "default": "title,page"
+            "default": "title,page",
             "required": false,
             "schema": {
               "$ref": "#/definitions/catalogueListDatasets"
