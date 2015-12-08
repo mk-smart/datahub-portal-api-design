@@ -13,7 +13,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "http://datahub.mksmart.org",
+  "host": "datahub.mksmart.org",
   "basePath": "/api/1.0",
   "tags": [
     {
@@ -134,7 +134,6 @@
           "application/x-www-form-urlencoded"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
@@ -192,12 +191,11 @@
             "type": "string"
           },
           {
-            "name": "petId",
+            "name": "datasetId",
             "in": "path",
-            "description": "Pet id to delete",
+            "description": "Dataset id to delete",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -218,7 +216,7 @@
         ]
       }
     },
-    "/mydatasources": {
+    "/datasources": {
       "get": {
         "tags": [
           "datasources"
@@ -231,8 +229,33 @@
         ],
         "parameters": [],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Datasources"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions": {
+      "get": {
+        "tags": [
+          "subscriptions"
+        ],
+        "summary": "List my subscriptions",
+        "description": "Provides a list of the subscriptions.",
+        "operationId": "subscriptionsList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+           "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Subscriptions"
+            }
           }
         }
       }
@@ -267,6 +290,41 @@
           "type": "string",
           "format": "date-time"
         }
+      }
+    },
+    "Subscriptions": {
+      "type": "object",
+      "properties": {
+         "list": {
+           "type": "array",
+           "items": {
+             "key": {
+               "type": "string"
+             },
+             "datasetId": {
+               "type": "string"
+             },
+             "active": {
+               "type": "boolean"
+             }
+           }
+         }
+      }
+    },
+    "Datasources": {
+      "type": "object",,
+      "properties": {
+         "list": {
+           "type": "array",
+           "items": {
+             "datasetId": {
+               "type": "string"
+             },
+             "url":{
+               "type": "string"
+             }
+           }
+         }
       }
     },
     "ApiResponse": {
