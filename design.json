@@ -21,7 +21,7 @@
       "description": "About datasets",
       "externalDocs": {
         "description": "List the datasets a user can view. Access dataset metadata.",
-        "url": "http://swagger.io"
+        "url": "#"
       }
     },
     {
@@ -125,11 +125,11 @@
       },
       "post": {
         "tags": [
-          "pet"
+          "catalogue"
         ],
-        "summary": "Updates a pet in the store with form data",
+        "summary": "Updates a dataset in the catalogue with form data",
         "description": "",
-        "operationId": "updatePetWithForm",
+        "operationId": "updateDatasetWithForm",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -139,24 +139,23 @@
         ],
         "parameters": [
           {
-            "name": "petId",
+            "name": "datasetId",
             "in": "path",
-            "description": "ID of pet that needs to be updated",
+            "description": "ID of dataset that needs to be updated",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           },
           {
-            "name": "name",
+            "name": "title",
             "in": "formData",
-            "description": "Updated name of the pet",
+            "description": "Updated title of the dataset",
             "required": false,
             "type": "string"
           },
           {
-            "name": "status",
+            "name": "description",
             "in": "formData",
-            "description": "Updated status of the pet",
+            "description": "Updated description of the pet",
             "required": false,
             "type": "string"
           }
@@ -168,9 +167,9 @@
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
+            "portal_auth": [
+              "write:datasets",
+              "read:datasets"
             ]
           }
         ]
