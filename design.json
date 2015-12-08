@@ -321,7 +321,6 @@
     "Datasources": {
       "type": "object",
       "properties": {
-        {
          "datasetId": {
            "type": "string"
          },
