@@ -64,7 +64,7 @@
             "in": "query",
             "type": "string",
             "name": "fields",
-            "enum": ["title","description","url","datasetId","lastModified","created"]
+            "default": "datasetId,title,url"
           }
         ],
         "responses": {
