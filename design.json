@@ -299,6 +299,14 @@
         "created": {
           "type": "string",
           "format": "date-time"
+        },
+        "categories": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
         }
       },
       "required": ["datasetId"]
