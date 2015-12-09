@@ -311,9 +311,30 @@
         "formats": {
           "type": "array",
           "items": {"type": "string"}
+        },
+        "policies": {
+          "type": "array",
+          "items":{"$ref": "#/definitions/RedistributionPolicy"}
         }
       },
       "required": ["datasetId"]
+    },
+    "RedistributionPolicy":{
+      "type": "object",
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "description":{
+          "type": "string"
+        }
+      },
+      "required": ["policyId"]
+      }
     },
     "Subscription": {
       "type": "object",
