@@ -64,7 +64,7 @@
                         "in": "query",
                         "type": "string",
                         "name": "fields",
-                        "default": "datasetId,title,url"
+                        "default": "id,title,url"
                     }
                 ],
                 "responses": {
@@ -87,7 +87,7 @@
                 "security": []
             }
         },
-        "/dataset/{datasetId}": {
+        "/dataset/{id}": {
             "get": {
                 "tags": [
                     "Data Catalogue"
@@ -100,7 +100,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "datasetId",
+                        "name": "id",
                         "in": "path",
                         "description": "ID of dataset to return",
                         "required": true,
@@ -197,7 +197,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "datasetId",
+                        "name": "id",
                         "in": "path",
                         "description": "Dataset id to delete",
                         "required": true,
@@ -306,7 +306,7 @@
         "Dataset": {
             "type": "object",
             "properties": {
-                "datasetId": {
+                "id": {
                     "type": "string",
                     "description": "Dataset UUID"
                 },
@@ -353,7 +353,7 @@
                 }
             },
             "required": [
-                "datasetId"
+                "id"
             ]
         },
         "RedistributionPolicy": {
@@ -380,7 +380,7 @@
                 "key": {
                     "type": "string"
                 },
-                "datasetId": {
+                "id": {
                     "type": "string"
                 },
                 "active": {
@@ -389,14 +389,14 @@
             },
             "required": [
                 "key",
-                "datasetId",
+                "id",
                 "active"
             ]
         },
         "Datasource": {
             "type": "object",
             "properties": {
-                "datasetId": {
+                "id": {
                     "type": "string"
                 },
                 "url": {
@@ -404,7 +404,7 @@
                 }
             },
             "required": [
-                "datasetId",
+                "id",
                 "url"
             ]
         },
