@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is ongoing work for the MK:Smart Datahub Portal API.  You can find out more about MK:Smart at [http://mksmart.org](http://mksmart.org)",
+    "description": "This is ongoing work for the MK:Smart Data Hub API.  You can find out more about MK:Smart at [http://mksmart.org](http://mksmart.org)",
     "version": "1.0.0",
-    "title": "MK Datahub API",
+    "title": "MK Data Hub API",
     "termsOfService": "http://datahub.mksmart.org",
     "contact": {
       "email": "enrico.daga@open.ac.uk"
