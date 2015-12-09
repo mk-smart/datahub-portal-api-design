@@ -142,11 +142,18 @@
                 ],
                 "parameters": [
                     {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Dataset id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
                         "name": "dataset",
                         "in": "body",
-                        "description": "ID of dataset that needs to be updated",
+                        "description": "Dataset",
                         "required": true,
-                        "type": {
+                        "schema": {
                             "$ref": "#/definitions/Dataset"
                         }
                     }
@@ -155,25 +162,19 @@
                     "201": {
                         "description": "Dataset created,",
                         "schema": {
-                            "type": {
-                                "$ref": "#definitions/ApiResponse"
-                            }
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     },
                     "406": {
                         "description": "The dataset already exists,",
                         "schema": {
-                            "type": {
-                                "$ref": "#definitions/ApiResponse"
-                            }
+                            "$ref": "/#definitions/ApiResponse"
                         }
                     },
                     "500": {
                         "description": "Server Error",
                         "schema": {
-                            "type": {
-                                "$ref": "#/definitions/ApiResponse"
-                            }
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     }
                 },
@@ -207,22 +208,20 @@
                 "responses": {
                     "204": {
                         "description": "Dataset deleted",
-                        "type": {
-                            "$ref": "#definitions/ApiResponse"
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     },
                     "400": {
                         "description": "Invalid dataset value",
-                        "type": {
-                            "$ref": "#definitions/ApiResponse"
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     },
                     "500": {
                         "description": "Server Error",
                         "schema": {
-                            "type": {
-                                "$ref": "#/definitions/ApiResponse"
-                            }
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     }
                 },
@@ -254,9 +253,7 @@
                     "500": {
                         "description": "Server Error",
                         "schema": {
-                            "type": {
-                                "$ref": "#/definitions/ApiResponse"
-                            }
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     }
                 }
@@ -283,13 +280,6 @@
                                 "$ref": "#/definitions/Subscription"
                             }
                         }
-                    },
-                    "500": {
-                        "schema": {
-                            "type": {
-                                "$ref": "#/definitions/ApiResponse"
-                            }
-                        }
                     }
                 }
             }
@@ -303,6 +293,10 @@
         }
     },
     "definitions": {
+        "uuid": {
+            "type": "string",
+            "format": "/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/"
+        },
         "Dataset": {
             "type": "object",
             "properties": {
