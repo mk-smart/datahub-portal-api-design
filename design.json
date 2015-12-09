@@ -62,7 +62,9 @@
         "parameters": [
           {
             "in": "query",
-            "name": "fields"
+            "type": "string",
+            "name": "fields",
+            "enum": ["title","description","url","datasetId","lastModified","created"]
           }
         ],
         "responses": {
