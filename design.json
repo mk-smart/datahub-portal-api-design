@@ -314,12 +314,12 @@
         },
         "policies": {
           "type": "array",
-          "items":{"$ref": "#/definitions/RedistributionPolicy"}
+          "items": { "$ref": "#/definitions/RedistributionPolicy"}
         }
       },
       "required": ["datasetId"]
     },
-    "RedistributionPolicy":{
+    "RedistributionPolicy": {
       "type": "object",
       "properties": {
         "policyId": {
@@ -334,7 +334,6 @@
         }
       },
       "required": ["policyId"]
-      }
     },
     "Subscription": {
       "type": "object",
