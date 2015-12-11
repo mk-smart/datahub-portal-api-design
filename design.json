@@ -18,7 +18,7 @@
     "tags": [
         {
             "name": "Data Catalogue",
-            "description": "About datasets",
+            "description": "All about datasets, categories and licenses",
             "externalDocs": {
                 "description": "List the datasets a user can view. Access dataset metadata.",
                 "url": "#"
@@ -84,7 +84,11 @@
                         }
                     }
                 },
-                "security": []
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         },
         "/dataset/{id}": {
@@ -178,7 +182,11 @@
                         }
                     }
                 },
-                "security": []
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -225,7 +233,40 @@
                         }
                     }
                 },
-                "security": []
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/licenses": {
+            "get": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Licenses",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/License"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         },
         "/datasources": {
@@ -256,7 +297,12 @@
                             "$ref": "#/definitions/ApiResponse"
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         },
         "/subscriptions": {
@@ -281,7 +327,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         }
     },
@@ -469,11 +520,23 @@
                     "format": "date-time",
                     "readOnly": true
                 },
-                "policies": {
+                "licenses": {
                     "type": "array",
                     "items": {
-                        "type": "string"
-                    }
+                        "type": "string",
+                        "enum": [
+                            "flickr-apis-terms-of-use",
+                            "terms-and-conditions-for-information-and-services-at-food-gov-ukratings",
+                            "odc-database-contents-license-dbcl-1-0",
+                            "netatmo-api-terms-of-use",
+                            "other",
+                            "open-database-license-odbl-v1-0",
+                            "os-open-data-license",
+                            "creative-commons-attribution-license",
+                            "open-government-license"
+                        ]
+                    },
+                    "minItems": 1
                 },
                 "info": {
                     "type": "object",
@@ -488,10 +551,10 @@
                 "id"
             ]
         },
-        "RedistributionPolicy": {
+        "License": {
             "type": "object",
             "properties": {
-                "policyId": {
+                "id": {
                     "type": "string",
                     "readOnly": true
                 },
@@ -503,7 +566,7 @@
                 }
             },
             "required": [
-                "policyId"
+                "id"
             ]
         },
         "Subscription": {
