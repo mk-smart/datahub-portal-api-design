@@ -551,7 +551,10 @@
                     "$ref": "#/definitions/AccessPolicy"
                 },
                 "exceptions": {
-                    "$ref": "#/definitions/AccessPolicyException"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccessPolicyException"
+                    }
                 }
             }
         },
