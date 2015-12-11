@@ -293,10 +293,6 @@
         }
     },
     "definitions": {
-        "uuid": {
-            "type": "string",
-            "format": "/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/"
-        },
         "Dataset": {
             "type": "object",
             "properties": {
@@ -304,8 +300,17 @@
                     "type": "string",
                     "description": "Dataset UUID"
                 },
-                "title": {
-                    "type": "string"
+                "name": {
+                    "type": "string",
+                    "description": "The name of the dataset"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of dataset",
+                    "enum": [
+                        "stream",
+                        "file"
+                    ]
                 },
                 "page": {
                     "type": "string"
@@ -315,23 +320,48 @@
                 },
                 "lastModified": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "readOnly": true
                 },
                 "created": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "readOnly": true
                 },
                 "categories": {
                     "type": "array",
                     "items": {
-                        "type": "string"
-                    }
+                        "type": "string",
+                        "enum": [
+                            "business",
+                            "crime",
+                            "demography",
+                            "education",
+                            "employment",
+                            "energy",
+                            "environment",
+                            "geo",
+                            "health",
+                            "housing",
+                            "location",
+                            "media",
+                            "public sector",
+                            "sensor",
+                            "social media",
+                            "statistics",
+                            "transport",
+                            "water"
+                        ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "uniqueItems": true
                 },
                 "formats": {
                     "type": "array",
