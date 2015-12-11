@@ -392,6 +392,24 @@
                         "type": "string"
                     }
                 },
+                "ownership": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sourceWebsite": {
+                    "type": "string"
+                },
+                "sourceName": {
+                    "type": "string"
+                },
+                "pricePlan": {
+                    "type": "string",
+                    "enum": [
+                        "Free"
+                    ]
+                },
                 "licenses": {
                     "type": "array",
                     "items": {
@@ -409,6 +427,9 @@
                         ]
                     },
                     "minItems": 1
+                },
+                "statement": {
+                    "type": "string"
                 }
             }
         },
@@ -422,6 +443,23 @@
                         "Sensor",
                         "Event"
                     ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The Feed id",
+                    "readOnly": true
+                },
+                "previewUrl": {
+                    "type": "string",
+                    "description": "Link to the preview feed page in the data hub portal"
+                },
+                "feedUrl": {
+                    "type": "string",
+                    "description": "Feed API url to be used to write/read streams."
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Key (label) used to write to the stream API. If the key name does not match an existing API key, a new one is created and bound to the given label."
                 },
                 "location": {
                     "type": "string",
@@ -503,6 +541,52 @@
                 }
             }
         },
+        "Access": {
+            "type": "object",
+            "properties": {
+                "provider": {
+                    "type": "string"
+                },
+                "everyone": {
+                    "$ref": "#/definitions/AccessPolicy"
+                },
+                "exceptions": {
+                    "$ref": "#/definitions/AccessPolicyException"
+                }
+            }
+        },
+        "AccessPolicy": {
+            "type": "object",
+            "properties": {
+                "view": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "subscribe": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "AccessPolicyException": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "type": "string"
+                },
+                "view": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "subscribe": {
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "required": [
+                "user"
+            ]
+        },
         "Dataset": {
             "type": "object",
             "properties": {
@@ -545,6 +629,10 @@
                 "stream": {
                     "type": "object",
                     "$ref": "#/definitions/DatasetStream"
+                },
+                "access": {
+                    "type": "object",
+                    "$ref": "#/definitions/Access"
                 }
             },
             "required": [
