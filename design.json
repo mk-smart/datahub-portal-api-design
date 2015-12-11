@@ -320,7 +320,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Modify dataset info",
+                "summary": "Replace dataset info",
                 "description": "",
                 "operationId": "putDatasetInfoById",
                 "produces": [
@@ -331,6 +331,71 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DatasetInfo"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Modify dataset info (Patching)",
+                "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
+                "operationId": "patchDatasetInfoById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset",
                         "required": true,
                         "type": "string"
                     },
@@ -444,7 +509,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Modify stream information",
+                "summary": "Replace stream information",
                 "description": "",
                 "operationId": "putDatasetStreamById",
                 "produces": [
@@ -455,6 +520,71 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DatasetStream"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Modify stream information",
+                "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
+                "operationId": "patchDatasetStreamById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset",
                         "required": true,
                         "type": "string"
                     },
@@ -568,7 +698,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Modify access policies of dataset",
+                "summary": "Replace access policies of dataset",
                 "description": "",
                 "operationId": "putDatasetAccessById",
                 "produces": [
@@ -579,6 +709,77 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Access"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Access"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "406": {
+                        "description": "Conflict. Access policies are inconsistent.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Modify access policies of dataset",
+                "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
+                "operationId": "patchDatasetAccessById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset",
                         "required": true,
                         "type": "string"
                     },
