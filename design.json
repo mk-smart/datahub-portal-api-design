@@ -164,10 +164,13 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "Dataset created,",
+                        "description": "Dataset created",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden. Api key cannot create Datasets"
                     },
                     "406": {
                         "description": "The dataset already exists,",
@@ -226,11 +229,199 @@
                             "$ref": "#/definitions/ApiResponse"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden"
+                    },
                     "500": {
                         "description": "Server Error",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/dataset/{id}/info": {
+            "get": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Find dataset by ID",
+                "description": "Returns a single dataset",
+                "operationId": "getDatasetInfoById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/DatasetInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Dataset not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/dataset/{id}/stream": {
+            "get": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Find dataset by ID",
+                "description": "Returns the stream section of a dataset",
+                "operationId": "getDatasetStreamById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/DatasetStream"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Dataset not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/dataset/{id}/access": {
+            "get": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "View access policies of dataset",
+                "description": "",
+                "operationId": "getDatasetAccessById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Access"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Dataset not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Data Catalogue"
+                ],
+                "summary": "Modify access policies of dataset",
+                "description": "",
+                "operationId": "putDatasetAccessById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dataset to return",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Access"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Access"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Dataset not found"
+                    },
+                    "406": {
+                        "description": "Conflict. Access policies are inconsistent."
                     }
                 },
                 "security": [
