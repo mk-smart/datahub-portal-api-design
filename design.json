@@ -119,10 +119,16 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "404": {
-                        "description": "Dataset not found"
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     }
                 },
                 "security": [
@@ -135,7 +141,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Creates a dataset in the catalogue",
+                "summary": "Creates a dataset in the catalogue.",
                 "description": "",
                 "operationId": "updateDatasetWithForm",
                 "consumes": [
@@ -170,16 +176,19 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden. Api key cannot create Datasets"
+                        "description": "Forbidden. Api key cannot create Datasets",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "406": {
-                        "description": "The dataset already exists,",
+                        "description": "The dataset already exists, to modify the data use the sections endpoints: /info, /access and /stream /",
                         "schema": {
                             "$ref": "/#definitions/ApiResponse"
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server Error (unexpected)",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
@@ -195,7 +204,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Deletes a dataset",
+                "summary": "Delete a dataset",
                 "description": "",
                 "operationId": "deleteDataset",
                 "produces": [
@@ -230,10 +239,13 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden"
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server Error (unexpected)",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
@@ -251,7 +263,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Find dataset by ID",
+                "summary": "Get dataset information",
                 "description": "Returns a single dataset",
                 "operationId": "getDatasetInfoById",
                 "produces": [
@@ -274,13 +286,28 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "403": {
-                        "description": "Forbidden"
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "404": {
-                        "description": "Dataset not found"
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     }
                 },
                 "security": [
@@ -295,7 +322,7 @@
                 "tags": [
                     "Data Catalogue"
                 ],
-                "summary": "Find dataset by ID",
+                "summary": "Get Stream information",
                 "description": "Returns the stream section of a dataset",
                 "operationId": "getDatasetStreamById",
                 "produces": [
@@ -318,13 +345,28 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "403": {
-                        "description": "Forbidden"
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "404": {
-                        "description": "Dataset not found"
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     }
                 },
                 "security": [
@@ -362,13 +404,28 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "403": {
-                        "description": "Forbidden"
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "404": {
-                        "description": "Dataset not found"
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     }
                 },
                 "security": [
@@ -412,16 +469,34 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid ID supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "403": {
-                        "description": "Forbidden"
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "404": {
-                        "description": "Dataset not found"
+                        "description": "Dataset not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "406": {
-                        "description": "Conflict. Access policies are inconsistent."
+                        "description": "Conflict. Access policies are inconsistent.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     }
                 },
                 "security": [
@@ -446,8 +521,14 @@
                             }
                         }
                     },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server Error (unexpected)",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
