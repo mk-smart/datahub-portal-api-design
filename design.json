@@ -25,6 +25,14 @@
             }
         },
         {
+            "name": "Find Data",
+            "description": "About finding data in the datahub",
+            "externalDocs": {
+                "description": "More about finding data",
+                "url": "#"
+            }
+        },
+        {
             "name": "Provide Data",
             "description": "About pushing data in the datahub",
             "externalDocs": {
@@ -56,7 +64,8 @@
         "/datasets": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Find Data"
                 ],
                 "summary": "List datasets",
                 "description": "List the datasets",
@@ -102,10 +111,11 @@
         "/dataset": {
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Creates a dataset in the catalogue.",
-                "description": "",
+                "description": "Add a new dataset in the data catalogue. <p>A dataset may have one of two type of sources (the _source_ field): feed and file. <p>A dataset with a feed data source is populated pushing data streams to a feed API using the EEML format. Once created, a new feed API exposed to allow you to push the data. <p>A dataset with a file data source is populated uploading files or pointing to open web resources providing an HTTP urls. Multiples files and URLs are allowed for this type of source. <p>A dataset supports of one of these two type of sources: feed or file, but not both of them. <p>You need to provide an api key. If you haven't done already, you can activate a key to the Data Catalogue dataset through the MK Data Hub Portal. Go to Find Data and look for the Data Catalogue dataset. Then, use the activate button to register a key. This key can be used to read and write to the Data Catalogue dataset through this API.",
                 "operationId": "updateDatasetWithForm",
                 "consumes": [
                     "application/json"
@@ -120,13 +130,26 @@
                         "description": "Dataset",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Dataset"
+                            "enum": [
+                                {
+                                    "$ref": "#/definitions/DatasetCreateTypeFeed"
+                                },
+                                {
+                                    "$ref": "#/definitions/DatasetCreateTypeFile"
+                                }
+                            ]
                         }
                     }
                 ],
                 "responses": {
                     "201": {
                         "description": "Dataset created",
+                        "headers": {
+                            "Location": {
+                                "description": "API location of the dataset metadata",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "$ref": "#/definitions/DatasetItem"
                         }
@@ -160,10 +183,11 @@
         "/dataset/{id}": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Find Data"
                 ],
                 "summary": "Find dataset by ID",
-                "description": "Returns a single dataset",
+                "description": "Access a dataset metadata.",
                 "operationId": "getDatasetById",
                 "produces": [
                     "application/json"
@@ -1866,6 +1890,59 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "DatasetCreateTypeFeed": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "description": "The type of data source. MUST be 'feed'",
+                    "enum": [
+                        "feed"
+                    ]
+                },
+                "info": {
+                    "type": "object",
+                    "$ref": "#/definitions/DatasetInfo"
+                },
+                "feed": {
+                    "type": "object",
+                    "$ref": "#/definitions/DatasetFeed"
+                },
+                "access": {
+                    "type": "object",
+                    "$ref": "#/definitions/Access"
+                }
+            },
+            "required": [
+                "source",
+                "info",
+                "feed"
+            ]
+        },
+        "DatasetCreateTypeFile": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "description": "The type of data source. MUST be 'file'",
+                    "enum": [
+                        "file"
+                    ]
+                },
+                "info": {
+                    "type": "object",
+                    "$ref": "#/definitions/DatasetInfo"
+                },
+                "access": {
+                    "type": "object",
+                    "$ref": "#/definitions/Access"
+                }
+            },
+            "required": [
+                "source",
+                "info"
             ]
         },
         "License": {
