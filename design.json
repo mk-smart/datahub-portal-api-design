@@ -39,22 +39,6 @@
                 "description": "More about providing data",
                 "url": "#"
             }
-        },
-        {
-            "name": "Data Sources",
-            "description": "List the data sources and details about them.",
-            "externalDocs": {
-                "description": "Find out more about this API",
-                "url": "#"
-            }
-        },
-        {
-            "name": "Subscriptions",
-            "description": "Operations about user",
-            "externalDocs": {
-                "description": "Find out more about this API",
-                "url": "#"
-            }
         }
     ],
     "schemes": [
@@ -1015,7 +999,7 @@
                     "Data Catalogue",
                     "Provide Data"
                 ],
-                "summary": "Creates a new HTTP file data source (upload)",
+                "summary": "Creates a new file data source (upload)",
                 "description": "Uploads a source file for the dataset. The dataset MUST be of type __file__",
                 "operationId": "uploadFile",
                 "consumes": [
@@ -1461,7 +1445,6 @@
         "/datasources": {
             "get": {
                 "tags": [
-                    "Data Sources",
                     "Provide Data"
                 ],
                 "summary": "List my data sources",
@@ -1498,7 +1481,6 @@
         "/subscriptions": {
             "get": {
                 "tags": [
-                    "Subscriptions",
                     "Find Data"
                 ],
                 "summary": "List my subscriptions",
