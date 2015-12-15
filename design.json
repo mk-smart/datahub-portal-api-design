@@ -25,6 +25,14 @@
             }
         },
         {
+            "name": "Provide Data",
+            "description": "About pushing data in the datahub",
+            "externalDocs": {
+                "description": "More about providing data",
+                "url": "#"
+            }
+        },
+        {
             "name": "Data Sources",
             "description": "List the data sources and details about them.",
             "externalDocs": {
@@ -86,7 +94,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -144,7 +152,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -191,7 +199,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -248,7 +256,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -307,7 +315,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -372,7 +380,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -437,7 +445,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -496,7 +504,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -561,7 +569,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -626,7 +634,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -689,7 +697,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -753,7 +761,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -836,7 +844,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -900,7 +908,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -959,7 +967,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1033,7 +1041,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1099,7 +1107,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -1166,7 +1174,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1225,7 +1233,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -1296,7 +1304,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             },
@@ -1367,7 +1375,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1402,7 +1410,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1438,7 +1446,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
@@ -1468,16 +1476,16 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "key": []
                     }
                 ]
             }
         }
     },
     "securityDefinitions": {
-        "api_key": {
+        "key": {
             "type": "apiKey",
-            "name": "api_key",
+            "name": "key",
             "in": "header"
         }
     },
