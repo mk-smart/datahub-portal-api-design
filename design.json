@@ -841,7 +841,7 @@
                 ]
             }
         },
-        "/dataset/{datasetId}/http": {
+        "/dataset/{datasetId}/http/": {
             "put": {
                 "tags": [
                     "Data Catalogue"
