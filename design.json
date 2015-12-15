@@ -184,7 +184,8 @@
             "get": {
                 "tags": [
                     "Data Catalogue",
-                    "Find Data"
+                    "Find Data",
+                    "Provide Data"
                 ],
                 "summary": "Find dataset by ID",
                 "description": "Access a dataset metadata.",
@@ -229,7 +230,8 @@
             },
             "delete": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Delete a dataset",
                 "description": "",
@@ -288,7 +290,8 @@
         "/dataset/{id}/info": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Get dataset information",
                 "description": "Returns a single dataset",
@@ -345,7 +348,8 @@
             },
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Replace dataset info",
                 "description": "",
@@ -410,7 +414,8 @@
             },
             "patch": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Modify dataset info (Patching)",
                 "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
@@ -477,10 +482,11 @@
         "/dataset/{id}/feed": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Get Feed information",
-                "description": "Returns the stream section of a dataset",
+                "description": "Returns the feed section of a dataset metadata",
                 "operationId": "getDatasetStreamById",
                 "produces": [
                     "application/json"
@@ -534,7 +540,8 @@
             },
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Replace stream information",
                 "description": "",
@@ -599,7 +606,8 @@
             },
             "patch": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Modify stream information",
                 "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
@@ -666,7 +674,8 @@
         "/dataset/{datasetId}/file/{fileId}": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "operationId": "getFileMetadata",
                 "description": "Retrieve file metadata",
@@ -727,7 +736,8 @@
             },
             "delete": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Delete a dataset",
                 "description": "",
@@ -791,7 +801,8 @@
             },
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "description": "Update file metadata",
                 "summary": "Update file metadata",
@@ -876,7 +887,8 @@
         "/dataset/{datasetId}/http/": {
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Registers a new HTTP file data source",
                 "operationId": "registerHttpSource",
@@ -940,7 +952,8 @@
         "/dataset/{datasetId}/http/{fileId}": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "View the last fetched version of the file",
                 "operationId": "getHttpSource",
@@ -999,7 +1012,8 @@
         "/dataset/{datasetId}/uploads/": {
             "post": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Creates a new HTTP file data source (upload)",
                 "description": "Uploads a source file for the dataset. The dataset MUST be of type __file__",
@@ -1073,7 +1087,8 @@
         "/dataset/{datasetId}/uploads/{fileId}": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "description": "Retrieve the uploaded file.",
                 "summary": "Retrieve file",
@@ -1206,7 +1221,8 @@
         "/dataset/{id}/access": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "View access policies of dataset",
                 "description": "",
@@ -1263,7 +1279,8 @@
             },
             "put": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Replace access policies of dataset",
                 "description": "",
@@ -1334,7 +1351,8 @@
             },
             "patch": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Provide Data"
                 ],
                 "summary": "Modify access policies of dataset",
                 "description": "With this method, only the provided fields are updated. The remaining fields are not modified.",
@@ -1407,7 +1425,8 @@
         "/licenses": {
             "get": {
                 "tags": [
-                    "Data Catalogue"
+                    "Data Catalogue",
+                    "Find Data"
                 ],
                 "responses": {
                     "200": {
@@ -1442,7 +1461,8 @@
         "/datasources": {
             "get": {
                 "tags": [
-                    "Data Sources"
+                    "Data Sources",
+                    "Provide Data"
                 ],
                 "summary": "List my data sources",
                 "description": "Provides a list of the data sources.",
@@ -1478,7 +1498,8 @@
         "/subscriptions": {
             "get": {
                 "tags": [
-                    "Subscriptions"
+                    "Subscriptions",
+                    "Find Data"
                 ],
                 "summary": "List my subscriptions",
                 "description": "Provides a list of the subscriptions.",
