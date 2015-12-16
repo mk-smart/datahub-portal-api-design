@@ -99,7 +99,7 @@
                     "Provide Data"
                 ],
                 "summary": "Creates a dataset in the catalogue.",
-                "description": "Add a new dataset in the data catalogue. <p>A dataset may have one of two type of sources (the _source_ field): feed and file. <p>A dataset with a feed data source is populated pushing data streams to a feed API using the EEML format. Once created, a new feed API exposed to allow you to push the data. <p>A dataset with a file data source is populated uploading files or pointing to open web resources providing an HTTP urls. Multiples files and URLs are allowed for this type of source. <p>A dataset supports of one of these two type of sources: feed or file, but not both of them. <p>You need to provide an api key. If you haven't done already, you can activate a key to the Data Catalogue dataset through the MK Data Hub Portal. Go to Find Data and look for the Data Catalogue dataset. Then, use the activate button to register a key. This key can be used to read and write to the Data Catalogue dataset through this API.",
+                "description": "Add a new dataset in the data catalogue. <p>A dataset may have one of two type of sources (the _source_ field): temporal and entities. <p>_Temporal_ data is meant to be populated pushing data streams to a feed API using the EEML format. Once created, a new feed API exposed to allow you to push the data. <p>_Entities_ data is populated uploading files or pointing to open web resources providing an HTTP urls. Files must be in CSV format. Multiples files and URLs are allowed for this type of dataset. <p>A dataset supports one of these two type of sources: _temporal_ or _entities_, but not both of them. <p>You need to provide an __api key__. If you haven't done already, you can activate a key to the Data Catalogue dataset through the MK Data Hub Portal. Go to _Find Data_ and look for the _Data Catalogue_ dataset. Then, use the _activate_ button to register a key. That key can be used to read and write to the Data Catalogue dataset through this API.",
                 "operationId": "updateDatasetWithForm",
                 "consumes": [
                     "application/json"
@@ -116,10 +116,10 @@
                         "schema": {
                             "enum": [
                                 {
-                                    "$ref": "#/definitions/DatasetCreateTypeFeed"
+                                    "$ref": "#/definitions/DatasetCreateTypeTemporal"
                                 },
                                 {
-                                    "$ref": "#/definitions/DatasetCreateTypeFile"
+                                    "$ref": "#/definitions/DatasetCreateTypeEntities"
                                 }
                             ]
                         }
@@ -958,7 +958,7 @@
                     }
                 ],
                 "produces": [
-                    "application/json"
+                    "text/csv"
                 ],
                 "responses": {
                     "200": {
@@ -1032,7 +1032,10 @@
                         "name": "mimeType",
                         "in": "formData",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "text/csv"
+                        ]
                     }
                 ],
                 "responses": {
@@ -1388,6 +1391,90 @@
                     },
                     "406": {
                         "description": "Conflict. Access policies are inconsistent.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "key": []
+                    }
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Data Catalogue",
+                    "Find Data"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Licenses",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "category": {
+                                    "type": "string"
+                                },
+                                "datasets": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error (unexpected)",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "key": []
+                    }
+                ]
+            }
+        },
+        "/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Data Catalogue",
+                    "Find Data"
+                ],
+                "parameters": {
+                    "category": {
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Datasets in category",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DatasetItem"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
@@ -1812,12 +1899,12 @@
                     "description": "Dataset UUID",
                     "readOnly": true
                 },
-                "source": {
+                "type": {
                     "type": "string",
-                    "description": "The type of data source",
+                    "description": "The type of dataset",
                     "enum": [
-                        "stream",
-                        "file"
+                        "temporal",
+                        "entities"
                     ],
                     "readOnly": true
                 },
@@ -1850,12 +1937,12 @@
                     "type": "string",
                     "description": "Dataset UUID"
                 },
-                "source": {
+                "type": {
                     "type": "string",
                     "description": "The type of data source",
                     "enum": [
-                        "feed",
-                        "file"
+                        "temporal",
+                        "entities"
                     ]
                 },
                 "lastModified": {
@@ -1895,14 +1982,14 @@
                 "id"
             ]
         },
-        "DatasetCreateTypeFeed": {
+        "DatasetCreateTypeTemporal": {
             "type": "object",
             "properties": {
-                "source": {
+                "type": {
                     "type": "string",
-                    "description": "The type of data source. MUST be 'feed'",
+                    "description": "The type of data source. MUST be 'temporal'",
                     "enum": [
-                        "feed"
+                        "temporal"
                     ]
                 },
                 "info": {
@@ -1919,19 +2006,19 @@
                 }
             },
             "required": [
-                "source",
+                "type",
                 "info",
                 "feed"
             ]
         },
-        "DatasetCreateTypeFile": {
+        "DatasetCreateTypeEntities": {
             "type": "object",
             "properties": {
-                "source": {
+                "type": {
                     "type": "string",
-                    "description": "The type of data source. MUST be 'file'",
+                    "description": "The type of data source. MUST be 'entities'",
                     "enum": [
-                        "file"
+                        "entities"
                     ]
                 },
                 "info": {
@@ -1944,7 +2031,7 @@
                 }
             },
             "required": [
-                "source",
+                "type",
                 "info"
             ]
         },
@@ -2011,35 +2098,36 @@
             "type": "object",
             "properties": {
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "readOnly": true
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "readOnly": true
                 },
                 "active": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "readOnly": true
                 }
-            },
-            "required": [
-                "key",
-                "id",
-                "active"
-            ]
+            }
         },
         "Datasource": {
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "readOnly": true
                 },
                 "url": {
-                    "type": "string"
+                    "type": "string",
+                    "readOnly": true
+                },
+                "dataset": {
+                    "type": "object",
+                    "readOnly": true,
+                    "$ref": "#/definitions/DatasetItem"
                 }
-            },
-            "required": [
-                "id",
-                "url"
-            ]
+            }
         },
         "ApiResponse": {
             "type": "object",
