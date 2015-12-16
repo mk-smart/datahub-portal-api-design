@@ -1892,43 +1892,50 @@
             ]
         },
         "DatasetItem": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Dataset UUID",
-                    "readOnly": true
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DatasetInfo"
                 },
-                "type": {
-                    "type": "string",
-                    "description": "The type of dataset",
-                    "enum": [
-                        "temporal",
-                        "entities"
-                    ],
-                    "readOnly": true
-                },
-                "lastModified": {
-                    "type": "string",
-                    "format": "date-time",
-                    "readOnly": true
-                },
-                "created": {
-                    "type": "string",
-                    "format": "date-time",
-                    "readOnly": true
-                },
-                "pageUrl": {
-                    "type": "string",
-                    "description": "The web page of the dataset",
-                    "readOnly": true
-                },
-                "apiUrl": {
-                    "type": "string",
-                    "description": "The url to the dataset json description",
-                    "readOnly": true
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Dataset UUID",
+                            "readOnly": true
+                        },
+                        "type": {
+                            "type": "string",
+                            "description": "The type of dataset",
+                            "enum": [
+                                "temporal",
+                                "entities"
+                            ],
+                            "readOnly": true
+                        },
+                        "lastModified": {
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true
+                        },
+                        "created": {
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true
+                        },
+                        "pageUrl": {
+                            "type": "string",
+                            "description": "The web page of the dataset",
+                            "readOnly": true
+                        },
+                        "apiUrl": {
+                            "type": "string",
+                            "description": "The url to the dataset json description",
+                            "readOnly": true
+                        }
+                    }
                 }
-            }
+            ]
         },
         "Dataset": {
             "type": "object",
