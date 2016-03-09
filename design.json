@@ -2108,7 +2108,11 @@
                     "type": "string",
                     "readOnly": true
                 },
-                "id": {
+                "datasetId": {
+                    "type": "string",
+                    "readOnly": true
+                },
+                "serviceId": {
                     "type": "string",
                     "readOnly": true
                 },
